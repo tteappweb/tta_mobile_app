@@ -21,7 +21,7 @@ class _SearchAddressMapState extends State<SearchAddressMap> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text("Load Google Map"),
                 onPressed: () {
                   Navigator.push(
@@ -71,7 +71,7 @@ class _SearchAddressMapState extends State<SearchAddressMap> {
                                             Text(selectedPlace.name),
                                             Text("Lat: $lat Lnt: $lng"),
                                            
-                                            RaisedButton(
+                                            ElevatedButton(
                                                 child: Text("Pick Here"),
                                                 onPressed: () {
                                                   // IMPORTANT: You MUST manage selectedPlace data yourself as using this build will not invoke onPlacePicker as

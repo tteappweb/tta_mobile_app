@@ -453,7 +453,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[Text(messageError)]),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                   onPressed: () => Navigator.of(context)
                       .pushNamedAndRemoveUntil('login', (route) => false),
                   child: Text('OK',

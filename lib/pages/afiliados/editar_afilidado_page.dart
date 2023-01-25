@@ -138,11 +138,15 @@ class _EditarAfiliadoPageState extends State<EditarAfiliadoPage> {
                         height: 20.0,
                       ),
                       Container(
-                        child: FlatButton(
-                          minWidth: _size.width * 0.4,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            minimumSize: Size(_size.width * 0.4, 30),
+                           
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
+                          ),
+                          
                           onPressed: handleEditar,
                           child: Text(
                             "Editar",

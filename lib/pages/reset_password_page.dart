@@ -177,7 +177,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[Text(content)]),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                   onPressed: () =>
                       Navigator.of(context).popAndPushNamed('login'),
                   child: Text('OK'))

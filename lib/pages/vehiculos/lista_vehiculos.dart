@@ -122,7 +122,7 @@ class _ListaVehiculosState extends State<ListaVehiculos> {
           title: Text('Desea eliminar el vehículo'),
           content: Text(vehiculo.placa,textAlign: TextAlign.center,),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               onPressed: () async{
                 Navigator.of(context).pop();
                 setState(() {isSubmitting=true;});
@@ -131,7 +131,7 @@ class _ListaVehiculosState extends State<ListaVehiculos> {
                },
               child: Text('Sí',style: TextStyle(fontWeight: FontWeight.bold, color: kBaseColor))
             ),
-            FlatButton(
+            ElevatedButton(
               onPressed: () {Navigator.of(context).pop();},
               child: Text('No',style: TextStyle(fontWeight: FontWeight.bold, color: kBaseColor))
             ),

@@ -14,10 +14,12 @@ class WebViewComponent extends StatefulWidget {
 }
 
 class _WebViewComponentState extends State<WebViewComponent> {
+  final controllerw = WebViewController()..setJavaScriptMode(JavaScriptMode.unrestricted);
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    controllerw.loadRequest(Uri.parse(widget.url));
+   
   }
 
   @override
@@ -27,9 +29,8 @@ class _WebViewComponentState extends State<WebViewComponent> {
         backgroundColor: kBaseColor,
         title: Text("App Tu Taller Mecánico"),
       ),
-      body: WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        initialUrl: widget.url,
+      body: WebViewWidget(
+        controller: controllerw,
       ),
     );
   }

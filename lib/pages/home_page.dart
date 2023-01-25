@@ -197,12 +197,14 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.only(right: 20, top: 20),
                         child: Center(
-                            child: RaisedButton(
-                                color: Colors.white60,
-                                shape: Border.all(
-                                  color: Colors.red,
-                                  width: 1.0,
-                                ),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white60,
+                                shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0),
+      ),
+                              ),
+                                
                                 child: Row(
                                   children: [
                                     Text('Ver')

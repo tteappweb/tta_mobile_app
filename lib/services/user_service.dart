@@ -13,7 +13,7 @@ class UserService {
   Future<String> checkTipousuario(String email) async {
     final resp = await api.getDocumentById(email);
     if (resp.exists) {
-      return resp.data()['tipoUsuario'];
+      return resp.data();
     }
     return null;
   }

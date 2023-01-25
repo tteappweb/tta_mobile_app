@@ -347,11 +347,14 @@ class _RegisterExtraPageState extends State<RegisterExtraPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        RaisedButton(
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kBaseColor
+          ),
           child: Text(texto,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white)),
-          color: kBaseColor,
+          
           onPressed: () {
             showDatePicker(
                     context: context,
