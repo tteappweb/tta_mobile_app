@@ -40,29 +40,36 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
 
   @override
   void initState() {
-    stars = [Icon(
+    stars = [
+      Icon(
         Icons.star,
         color: Colors.yellow.shade700,
         size: 35.0,
-      ),Icon(
+      ),
+      Icon(
         Icons.star,
         color: Colors.yellow.shade700,
         size: 35.0,
-      ),Icon(
+      ),
+      Icon(
         Icons.star,
         color: Colors.yellow.shade700,
         size: 35.0,
-      ),Icon(
+      ),
+      Icon(
         Icons.star,
         color: Colors.yellow.shade700,
         size: 35.0,
-      ),Icon(
+      ),
+      Icon(
         Icons.star,
         color: Colors.yellow.shade700,
         size: 35.0,
-      )];
+      )
+    ];
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     appState = Provider.of<AppState>(context);
@@ -88,23 +95,23 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
   Widget _body() {
     return SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-      children: [
+      child: Column(
+        children: [
           Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 _fotoMain(),
                 TitleComponent("Fotos"),
-                 ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                widget.afiliado.img,
-                fit: BoxFit.cover,
-                height: 200,
-              ),
-            ),
-          
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    widget.afiliado.img,
+                    fit: BoxFit.cover,
+                    height: 200,
+                  ),
+                ),
+
                 // FotosSlider(fotos: widget.afiliado.fotos),
                 SizedBox(height: 20.0),
                 _details(),
@@ -112,9 +119,9 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
             ),
           ),
           _calificar(),
-      ],
-    ),
-        ));
+        ],
+      ),
+    ));
   }
 
   showAlert(BuildContext context, String title) {
@@ -161,8 +168,8 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
       nombreUsuario: "",
       ubicacion: widget.afiliado.ubicacion ?? '',
     );
-    if(await rating.validateRating()){
-      return success(context,"Error" ,"Este negocio ya está calificado",true);
+    if (await rating.validateRating()) {
+      return success(context, "Error", "Este negocio ya está calificado", true);
     }
 
     rating.save();
@@ -170,14 +177,13 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
     appState.updateAfiliados();
     Afiliado a = await Afiliado.getById(widget.afiliado.id);
     await a.addRating(calificacion);
-    success(context, "Calificación guardada",
-        "su calificacion ha sido guardada correctamente",true);
+    success(context, "Calificación guardada", "su calificacion ha sido guardada correctamente", true);
     setCalificando(false);
   }
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState
-        .showSnackBar(new SnackBar(content: new Text(value)));
+    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: new Text(value)));
+    
   }
 
   Widget _rating2(double value, int total) {
@@ -239,7 +245,7 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
   }
 
   Widget _rating(double value) {
-    //stars = 
+    //stars =
     int total = value.toInt();
     //int cantidadEstrellas = 2;
     int halfs = 0;
@@ -260,43 +266,33 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
-          
-        return estrella(stars[index],index);
-       },
+          return estrella(stars[index], index);
+        },
       ),
     );
   }
 
-  Widget estrella(Icon icon,int i){
+  Widget estrella(Icon icon, int i) {
     return GestureDetector(
-      onTap: (){
-          for (var j = 0; j <= i; j++) {
-            print('j:'+j.toString());
-            stars[j] =(
-              Icon(
-              Icons.star,
-              color: Colors.yellow.shade700,
-              size: 35.0,
-            )
-            );
-            
-          }
-          for (var k = i+1; k < cantidadEstrellas; k++) {
-            print('k:'+k.toString());
-            stars[k] =(
-              Icon(
-              Icons.star_border,
-              color: Colors.yellow.shade700,
-              size: 35.0,
-            )
-            );
-          }
-          puntaje = i+1;
-          setState(() {
-              
-            });
-        
-        
+      onTap: () {
+        for (var j = 0; j <= i; j++) {
+          print('j:' + j.toString());
+          stars[j] = (Icon(
+            Icons.star,
+            color: Colors.yellow.shade700,
+            size: 35.0,
+          ));
+        }
+        for (var k = i + 1; k < cantidadEstrellas; k++) {
+          print('k:' + k.toString());
+          stars[k] = (Icon(
+            Icons.star_border,
+            color: Colors.yellow.shade700,
+            size: 35.0,
+          ));
+        }
+        puntaje = i + 1;
+        setState(() {});
       },
       child: icon,
     );
@@ -318,7 +314,11 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _rating(5),
-              IconButton(icon: Icon(Icons.send), onPressed: (){handleCalificar(puntaje);})
+              IconButton(
+                  icon: Icon(Icons.send),
+                  onPressed: () {
+                    handleCalificar(puntaje);
+                  })
             ],
           ),
         ),
@@ -373,16 +373,11 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
                 Icon(Icons.phone, color: kBaseColor),
                 widget.afiliado.telefono,
               ),
-               _row(
+              _row(
                 Icon(Icons.place, color: kBaseColor),
                 widget.afiliado.ubicacion,
               ),
-              _rowMapa(
-                Icon(Icons.place, color: kBaseColor),
-                widget.afiliado.ubicacion,
-                widget.afiliado.latitud,
-                widget.afiliado.longitud
-              )
+              _rowMapa(Icon(Icons.place, color: kBaseColor), widget.afiliado.ubicacion, widget.afiliado.latitud, widget.afiliado.longitud)
             ],
           ),
         ],
@@ -457,7 +452,7 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
     );
   }
 
-  Widget _rowMapa(Icon icon,String lugar, double latitud,double longitud) {
+  Widget _rowMapa(Icon icon, String lugar, double latitud, double longitud) {
     if (latitud == null) return Container();
     return Container(
       padding: EdgeInsets.only(left: 15.0),
@@ -469,14 +464,13 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
             margin: EdgeInsets.only(right: 15.0),
             child: icon,
           ),
-            Text(
-              "Cómo llegar" ?? '',
-              style: TextStyle(
-                fontSize: 17.0,
-                fontWeight: FontWeight.w400,
-              ),
+          Text(
+            "Cómo llegar" ?? '',
+            style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.w400,
             ),
-            
+          ),
           Expanded(
             child: Container(),
           ),
@@ -487,10 +481,12 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
               ),
               onPressed: () async {
                 final availableMaps = await MapLauncher.installedMaps;
-                print(
-                    availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
+                print(availableMaps); // [AvailableMap { mapName: Google Maps, mapType: google }, ...]
                 await availableMaps.first.showMarker(
-                  coords: Coords((latitud==0.0)?19.2529912:latitud, (longitud==0.0)?-99.5791536:longitud,),
+                  coords: Coords(
+                    (latitud == 0.0) ? 19.2529912 : latitud,
+                    (longitud == 0.0) ? -99.5791536 : longitud,
+                  ),
                   title: "Grúas",
                   description: "Asia's tallest building",
                 );
@@ -507,14 +503,14 @@ class _AfiliadosDetailsPageState extends State<AfiliadosDetailsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                widget.afiliado.img,
-                fit: BoxFit.cover,
-                height: 180,
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              widget.afiliado.img,
+              fit: BoxFit.cover,
+              height: 180,
             ),
+          ),
           Text(
             widget.afiliado.categoria,
             textAlign: TextAlign.center,

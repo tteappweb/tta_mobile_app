@@ -558,7 +558,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[Text(messageError)]),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                   onPressed: () => Navigator.of(context)
                       .pushNamedAndRemoveUntil('register', (route) => false),
                   child: Text('OK',

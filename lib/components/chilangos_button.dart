@@ -20,12 +20,16 @@ class ChilangosButton extends StatefulWidget {
 class _ChilangosButtonState extends State<ChilangosButton> {
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+ shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25.0),
       ),
       padding: widget.padding,
       elevation: elevation,
+       backgroundColor: kBaseColor,
+      ),
+     
       child: Text(
         widget.label,
         style: TextStyle(
@@ -34,7 +38,7 @@ class _ChilangosButtonState extends State<ChilangosButton> {
           color: widget.textColor??Colors.white,
         ),
       ),
-      color: kBaseColor,
+     
       onPressed: widget.enabled? widget.onPressed:null,
     );;
   }

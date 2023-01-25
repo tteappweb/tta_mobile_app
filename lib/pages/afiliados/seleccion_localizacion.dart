@@ -23,7 +23,7 @@ class _SeleccionLocalizacionState extends State<SeleccionLocalizacion> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text("Load Google Map"),
                 onPressed: () {
                   Navigator.push(
@@ -59,7 +59,7 @@ class _SeleccionLocalizacionState extends State<SeleccionLocalizacion> {
                                     borderRadius: BorderRadius.circular(12.0),
                                     child: state == SearchingState.Searching
                                         ? Center(child: CircularProgressIndicator())
-                                        : RaisedButton(
+                                        : ElevatedButton(
                                             child: Text("Pick Here"),
                                             onPressed: () {
                                               // IMPORTANT: You MUST manage selectedPlace data yourself as using this build will not invoke onPlacePicker as
