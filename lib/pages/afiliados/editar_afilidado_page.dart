@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:place_picker/entities/entities.dart';
+import 'package:place_picker/place_picker.dart';
 import 'package:places_app/components/blur_container.dart';
 import 'package:places_app/components/search_address_map.dart';
 import 'package:places_app/models/afiliado_model.dart';
 import 'package:places_app/helpers/alerts_helper.dart' as alerts;
 import 'package:places_app/routes/constantes.dart';
 import 'package:places_app/routes/routes_generate.dart';
-import 'package:google_maps_place_picker/google_maps_place_picker.dart';
+
 import 'package:places_app/services/afiliados_service.dart';
 
 class EditarAfiliadoPage extends StatefulWidget {
@@ -141,12 +143,10 @@ class _EditarAfiliadoPageState extends State<EditarAfiliadoPage> {
                         child: TextButton(
                           style: TextButton.styleFrom(
                             minimumSize: Size(_size.width * 0.4, 30),
-                           
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                           ),
-                          ),
-                          
                           onPressed: handleEditar,
                           child: Text(
                             "Editar",
@@ -188,7 +188,7 @@ class _EditarAfiliadoPageState extends State<EditarAfiliadoPage> {
           puntos: widget.afiliado.puntos);
       await afiliadosService.updateDocument(afiliado);
       alerts.success(context, "Actualizacion exitosa",
-          "Sus datos fueron actualizados con exito.", false,f: () {
+          "Sus datos fueron actualizados con exito.", false, f: () {
         Navigator.pushReplacementNamed(context, homeRoute);
       });
 
@@ -207,25 +207,15 @@ class _EditarAfiliadoPageState extends State<EditarAfiliadoPage> {
     });
   }
 
-  _buildDireccion() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
+  _buildDireccion() async {
+    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => PlacePicker(
-          apiKey:
-              "AIzaSyCxyFsUuFODYNFkLSNabseR9_VAWX9u21Y", // Put YOUR OWN KEY here.
-          onPlacePicked: (result) {
-            print(result.formattedAddress);
-            ubicacionCtrl.text = result.formattedAddress;
-            latitud = result.geometry.location.lat;
-            longitud = result.geometry.location.lng;
-
-            Navigator.of(context).pop();
-          },
-          initialPosition: LatLng(19.3764253, -99.0573512),
-          useCurrentLocation: true,
-        ),
-      ),
-    );
+              "AIzaSyCxyFsUuFODYNFkLSNabseR9_VAWX9u21Y",
+              displayLocation: LatLng(19.3764253, -99.0573512),
+            )));
+    ubicacionCtrl.text = result.formattedAddress;
+    latitud = result.latLng.latitude;
+    longitud = result.latLng.longitude;
+    Navigator.of(context).pop();
   }
 }

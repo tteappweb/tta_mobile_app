@@ -1,4 +1,4 @@
-package com.example.ttaapp
+package com.iqneting.places_app
 
 import io.flutter.embedding.android.FlutterActivity
 

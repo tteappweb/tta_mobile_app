@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:place_picker/entities/entities.dart';
+import 'package:place_picker/place_picker.dart';
 import 'package:places_app/components/blur_container.dart';
 
 import 'package:places_app/components/fotos_file_slider.dart';
@@ -21,8 +23,8 @@ import 'package:places_app/routes/routes_generate.dart';
 
 import 'package:places_app/services/db_service.dart';
 import 'package:places_app/shared/user_preferences.dart';
-import 'package:smart_select/smart_select.dart';
-import 'package:google_maps_place_picker/google_maps_place_picker.dart';
+
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class RegistroAfiliacion extends StatefulWidget {
@@ -51,7 +53,7 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
   UserPreferences preferences = new UserPreferences();
 
   String categoriaValue = '';
-  List<S2Choice<String>> options = [
+  List<String> options = [
     // ...GlobalData.categorias
     //     .map((e) => S2Choice(value: e.nombre, title: e.nombre))
     //     .toList()
@@ -65,7 +67,7 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
 
   void initData() async {
     this.categorias = await Categoria.fetchData();
-    options = this.categorias.map((e) => S2Choice(value: e.nombre, title: e.nombre)).toList();
+    
     print(categorias);
     setState(() {
       isLoading = false;
@@ -181,14 +183,7 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
                     ],
                   ),
                 ),
-                SmartSelect<String>.single(
-                  title: 'Categoría',
-                  value: categoriaValue,
-                  choiceItems: options,
-                  placeholder: "Seleccionar",
-                  onChange: (state) =>
-                      setState(() => categoriaValue = state.value),
-                ),
+                
                 _fotosContainer(),
                 SizedBox(
                   height: 5.0,
@@ -395,24 +390,16 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
     );
   }
 
-  _buildDireccion() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
+  _buildDireccion() async{
+    
+    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => PlacePicker(
-          apiKey:
-              "AIzaSyCxyFsUuFODYNFkLSNabseR9_VAWX9u21Y", // Put YOUR OWN KEY here.
-          onPlacePicked: (result) {
-            print(result.formattedAddress);
-            ubicacionCtrl.text = result.formattedAddress;
-            latitud = result.geometry.location.lat;
-            longitud = result.geometry.location.lng;
-            Navigator.of(context).pop();
-          },
-          initialPosition: LatLng(19.3764253, -99.0573512),
-          useCurrentLocation: true,
-        ),
-      ),
-    );
+              "AIzaSyCxyFsUuFODYNFkLSNabseR9_VAWX9u21Y",
+              displayLocation: LatLng(19.3764253, -99.0573512),
+            )));
+    ubicacionCtrl.text = result.formattedAddress;
+    latitud = result.latLng.latitude;
+    longitud = result.latLng.longitude;
+    Navigator.of(context).pop();
   }
 }

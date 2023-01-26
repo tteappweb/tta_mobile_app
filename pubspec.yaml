@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   maps_toolkit: ^2.0.1
+  place_picker: ^0.9.19
   custom_info_window: ^1.0.1
   lazy_load_scrollview: ^1.2.0
   date_time_picker: ^2.1.0
@@ -54,18 +55,16 @@ dependencies:
   image_picker: ^0.8.6
   mime_type: ^1.0.0
   dotted_border: ^2.0.0+3
-  smart_select: ^4.2.1
   cool_alert: ^1.0.1
   cloud_firestore: ^4.3.1
   shared_preferences: ^2.0.16
   connectivity: ^3.0.6
-  
   location: ^4.4.0
   flutter_native_image: ^0.0.5+2
   webview_flutter: ^4.0.1
   url_launcher: ^6.1.7
   map_launcher: ^2.4.0
-  google_maps_place_picker: ^2.1.0-nullsafety.3
+ 
   modal_bottom_sheet: ^2.1.2
   advance_pdf_viewer: ^2.0.1
 
@@ -74,6 +73,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  change_app_package_name: ^1.1.0
   flutter_test:
     sdk: flutter
 

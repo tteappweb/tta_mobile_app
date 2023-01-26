@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  change_app_package_name:
+    dependency: "direct dev"
+    description:
+      name: change_app_package_name
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -457,48 +464,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "10.3.0"
-  geolocator:
-    dependency: transitive
-    description:
-      name: geolocator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "7.7.1"
-  geolocator_android:
-    dependency: transitive
-    description:
-      name: geolocator_android
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
-  geolocator_apple:
-    dependency: transitive
-    description:
-      name: geolocator_apple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.2"
-  geolocator_platform_interface:
-    dependency: transitive
-    description:
-      name: geolocator_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.3.6"
-  geolocator_web:
-    dependency: transitive
-    description:
-      name: geolocator_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.6"
-  google_api_headers:
-    dependency: transitive
-    description:
-      name: google_api_headers
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.0"
   google_maps_flutter:
     dependency: "direct main"
     description:
@@ -527,20 +492,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.5"
-  google_maps_place_picker:
-    dependency: "direct main"
-    description:
-      name: google_maps_place_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0-nullsafety.3"
-  google_maps_webservice:
-    dependency: transitive
-    description:
-      name: google_maps_webservice
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.20-nullsafety.5"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -646,13 +597,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.7.0"
   lazy_load_scrollview:
     dependency: "direct main"
     description:
@@ -758,20 +702,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  package_info_plus:
-    dependency: transitive
-    description:
-      name: package_info_plus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.2"
-  package_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: package_info_plus_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   path:
     dependency: transitive
     description:
@@ -870,6 +800,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.0"
+  place_picker:
+    dependency: "direct main"
+    description:
+      name: place_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.20-nullsafety"
   platform:
     dependency: transitive
     description:
@@ -973,13 +910,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  smart_select:
-    dependency: "direct main"
-    description:
-      name: smart_select
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.3.2"
   source_span:
     dependency: transitive
     description:
@@ -1064,13 +994,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.6"
-  tuple:
-    dependency: transitive
-    description:
-      name: tuple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:
