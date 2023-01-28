@@ -19,3 +19,4 @@ search_address_map
 editar_afiliado_page
 registro_afiliacion
 seleccion_localizacion
+map.dart

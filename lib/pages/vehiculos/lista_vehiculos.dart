@@ -120,20 +120,24 @@ class _ListaVehiculosState extends State<ListaVehiculos> {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           title: Text('Desea eliminar el vehículo'),
-          content: Text(vehiculo.placa,textAlign: TextAlign.center,),
+          content: Text("Placa: "+vehiculo.placa,textAlign: TextAlign.center,),
           actions: <Widget>[
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kBaseColor
+              ),
               onPressed: () async{
                 Navigator.of(context).pop();
                 setState(() {isSubmitting=true;});
                 await vehiculoService.deleteVehiculo(id);
                 setState(() {isSubmitting=false;});
                },
-              child: Text('Sí',style: TextStyle(fontWeight: FontWeight.bold, color: kBaseColor))
+              child: Text('Sí',style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white))
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: kBaseColor),
               onPressed: () {Navigator.of(context).pop();},
-              child: Text('No',style: TextStyle(fontWeight: FontWeight.bold, color: kBaseColor))
+              child: Text('No',style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white))
             ),
           ],
         );

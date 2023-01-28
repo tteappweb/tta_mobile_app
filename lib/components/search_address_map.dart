@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:place_picker/entities/entities.dart';
-import 'package:place_picker/place_picker.dart';
+
 
 class SearchAddressMap extends StatefulWidget {
   static final kInitialPosition = LatLng(-33.8567844, 151.213108);
@@ -26,11 +25,7 @@ class _SearchAddressMapState extends State<SearchAddressMap> {
               ElevatedButton(
                 child: Text("Load Google Map"),
                 onPressed: () async{
-                  LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) =>
-            PlacePicker("AIzaSyCxyFsUuFODYNFkLSNabseR9_VAWX9u21Y",
-                        displayLocation: LatLng(1,2),
-                        )));
+                  
                     
                   /*Navigator.push(
                     context,

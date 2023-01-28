@@ -46,14 +46,14 @@ static Future _onMessageHandler(RemoteMessage message) async {
         const NotificationDetails(
           android: AndroidNotificationDetails(
             "channel_id_1",
-            "policetaxi",
-            channelDescription: "policetaxi description",
+            "ttaap",
+            channelDescription: "ttaap description",
             playSound: true,
             priority: Priority.high,
             importance: Importance.max,
-            sound: RawResourceAndroidNotificationSound('notificationsound'),
+           
           ),
-          iOS: DarwinNotificationDetails(sound: 'nicework.mp3'),
+          iOS: DarwinNotificationDetails(),
         ),
       );
     }
@@ -73,14 +73,14 @@ static Future _onMessageHandler(RemoteMessage message) async {
         const NotificationDetails(
           android: AndroidNotificationDetails(
             "channel_id_1",
-            "policetaxi",
-            channelDescription: "policetaxi description",
+            "ttaap",
+            channelDescription: "ttaap description",
             playSound: true,
             priority: Priority.high,
             importance: Importance.max,
-            sound: RawResourceAndroidNotificationSound('notificationsound'),
+            
           ),
-          iOS: DarwinNotificationDetails(sound: 'nicework.mp3'),
+          iOS: DarwinNotificationDetails(),
         ),
       );
     }
@@ -142,44 +142,6 @@ static Future _onMessageHandler(RemoteMessage message) async {
 
   // TODO: recibir argumentos
 
-  Future<dynamic> onMessage(Map<String, dynamic> message) async {
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    const AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'channel_id_1',
-      'ttaapp channel',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-    const NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin
-        .show(0, message['notification']['title'].toString(), message['notification']['body'], platformChannelSpecifics, payload: 'item x');
-    print('====== onMessage =======');
-    print('message: $message');
-
-    final argumento = message['data']['uid'] ?? 'no-data';
-    print(argumento);
-    _mensajesStreamController.sink.add(argumento);
-  }
-
-  Future<dynamic> onLaunch(Map<String, dynamic> message) async {
-    print('====== onLaunch =======');
-    print('message: $message');
-
-    final argumento = message['data']['uid'] ?? 'no-data';
-    print(argumento);
-    _mensajesStreamController.sink.add(argumento);
-  }
-
-  Future<dynamic> onResume(Map<String, dynamic> message) async {
-    print('====== onResume =======');
-    print('message: $message');
-
-    final argumento = message['data']['uid'] ?? 'no-data';
-    print(argumento);
-    _mensajesStreamController.sink.add(argumento);
-  }
-
-  dispose() {
-    _mensajesStreamController?.close();
-  }
+  
+  
 }

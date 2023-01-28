@@ -12,8 +12,10 @@ class UserService {
 
   Future<String> checkTipousuario(String email) async {
     final resp = await api.getDocumentById(email);
+    
+    
     if (resp.exists) {
-      return resp.data();
+      return resp.get("tipoUsuario");
     }
     return null;
   }
@@ -28,10 +30,7 @@ class UserService {
 
   Future<bool> updateUser(Usuario user, String id) async {
     bool bandera = false;
-    final resp = await api
-        .addDocumentWithId(id, user.toJson())
-        .then((value) => bandera = true)
-        .catchError((onError) => bandera = false);
+    final resp = await api.addDocumentWithId(id, user.toJson()).then((value) => bandera = true).catchError((onError) => bandera = false);
     return bandera;
   }
 }

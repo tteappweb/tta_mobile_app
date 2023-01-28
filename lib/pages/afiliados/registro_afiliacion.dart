@@ -1,12 +1,15 @@
 import 'dart:io';
 
+import 'package:awesome_select/awesome_select.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:image_picker/image_picker.dart';
-import 'package:place_picker/entities/entities.dart';
-import 'package:place_picker/place_picker.dart';
+import 'package:map_location_picker/google_map_location_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 import 'package:places_app/components/blur_container.dart';
 
 import 'package:places_app/components/fotos_file_slider.dart';
@@ -23,7 +26,6 @@ import 'package:places_app/routes/routes_generate.dart';
 
 import 'package:places_app/services/db_service.dart';
 import 'package:places_app/shared/user_preferences.dart';
-
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -53,7 +55,7 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
   UserPreferences preferences = new UserPreferences();
 
   String categoriaValue = '';
-  List<String> options = [
+  List<S2Choice<String>> options = [
     // ...GlobalData.categorias
     //     .map((e) => S2Choice(value: e.nombre, title: e.nombre))
     //     .toList()
@@ -62,12 +64,19 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
   @override
   void initState() {
     super.initState();
+    getPermission();
     this.initData();
+  }
+
+  void getPermission() async {
+    Permission.locationAlways.request();
+    Permission.locationAlways.request();
   }
 
   void initData() async {
     this.categorias = await Categoria.fetchData();
-    
+
+    options = this.categorias.map((e) => S2Choice(value: e.nombre, title: e.nombre)).toList();
     print(categorias);
     setState(() {
       isLoading = false;
@@ -183,7 +192,13 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
                     ],
                   ),
                 ),
-                
+                SmartSelect<String>.single(
+                  title: 'Categoría',
+                  choiceItems: options,
+                  selectedValue: categoriaValue,
+                  placeholder: "Seleccionar",
+                  onChange: (state) => setState(() => categoriaValue = state.value),
+                ),
                 _fotosContainer(),
                 SizedBox(
                   height: 5.0,
@@ -191,11 +206,10 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
                 TextFormField(
                   maxLines: 5,
                   controller: _descripcioncontroller,
-                  
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Describe los servicios que ofreces',
-                    alignLabelWithHint:true, 
+                    alignLabelWithHint: true,
                   ),
                 ),
               ],
@@ -294,6 +308,7 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
 
   void handleRegister() async {
     //TODO: Register
+    print("registro de afiliado");
     try {
       setIsSaving(true);
       if (categoriaValue == '') {
@@ -323,17 +338,15 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
       print(afiliado.toJson());
       print(afiliado);
       db.crearAfiliado(afiliado);
-      
-      alerts.success(context, "Registro exitoso",
-          "Su registro será revisado para su aprobación.",false,f: () {
+
+      alerts.success(context, "Registro exitoso", "Su registro será revisado para su aprobación.", false, f: () {
         Navigator.pushReplacementNamed(context, loginRoute);
       });
 
       setIsSaving(false);
     } catch (e) {
       print(e.toString());
-      alerts.error(
-          context, "Error", "Ocurrió un error al registrar la afiliación");
+      alerts.error(context, "Error", "Ocurrió un error al registrar la afiliación");
       setIsSaving(false);
     }
   }
@@ -390,16 +403,13 @@ class _RegistroAfiliacionState extends State<RegistroAfiliacion> {
     );
   }
 
-  _buildDireccion() async{
-    
-    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => PlacePicker(
-              "AIzaSyCxyFsUuFODYNFkLSNabseR9_VAWX9u21Y",
-              displayLocation: LatLng(19.3764253, -99.0573512),
-            )));
-    ubicacionCtrl.text = result.formattedAddress;
+  _buildDireccion() async {
+    LocationResult result = await showLocationPicker(
+      
+      context, "AIzaSyC0FbqGD59m5uHTgESmlPZY1g6U8VxrZDo",
+       appBarColor: Colors.white, myLocationButtonEnabled: true, searchBarBoxDecoration: BoxDecoration(backgroundBlendMode: BlendMode.color, color: Colors.white));
+    ubicacionCtrl.text = result.address;
     latitud = result.latLng.latitude;
     longitud = result.latLng.longitude;
-    Navigator.of(context).pop();
   }
 }

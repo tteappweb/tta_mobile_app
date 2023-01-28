@@ -1,6 +1,7 @@
 //import 'dart:html';
 
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -199,15 +200,16 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                textStyle: TextStyle(color: Colors.black),
                                 backgroundColor: Colors.white60,
                                 shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(5),
       ),
                               ),
                                 
                                 child: Row(
                                   children: [
-                                    Text('Ver')
+                                    Text('Ver',style: TextStyle(color: Colors.black),)
                                     // })
                                   ],
                                 ),

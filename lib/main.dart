@@ -62,9 +62,14 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (_) => AppState()),
       ],
       child: MaterialApp(
-        theme: ThemeData(primaryColor: kBaseColor),
+        theme: ThemeData(
+          inputDecorationTheme: const InputDecorationTheme(  
+ labelStyle: TextStyle(color: Colors.black), //<-- SEE HERE
+  ),
+          primaryColor: kBaseColor,appBarTheme: AppBarTheme(color: kBaseColor)),
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
+        
         title: 'TTA',
         initialRoute: widget.initialRoute,
         onGenerateRoute: RouteGenerator.generateRoute,
