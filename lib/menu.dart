@@ -118,7 +118,6 @@ class _MenuBarState extends State<MenuBar> {
     } else {
       return Column(
         children: [
-          
           ListTile(
             leading: const Icon(Icons.exit_to_app, size: 20),
             title: Text("Eliminar cuenta"),

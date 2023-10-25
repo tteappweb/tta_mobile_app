@@ -20,3 +20,8 @@ editar_afiliado_page
 registro_afiliacion
 seleccion_localizacion
 map.dart
+
+## Versiones
+Este proyecto esta ligado estrictamente a Flutter version 3.3.10 que usa Dart version 2.18.6.
+Versiones superiores exigen prefijos en las importaciones ambiguas.
+Versiones inferiores tambien presentan esta condicion.
